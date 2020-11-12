@@ -7,7 +7,7 @@
 #include <cstddef>
 #include <string>
 #include <cmath>
-//#define max(x, y) x >= (y) ? (x) : y
+
 const size_t NUCL = sizeof(size_t) * 4;
 
 enum nucls {
@@ -15,10 +15,10 @@ enum nucls {
 };
 
 class RNA {
-    size_t* rna = nullptr;
-    size_t nuc_count = 0;
-    size_t sizet_count = 0;
-    nucls get_nucl(size_t) const;
+    size_t* rna;
+    size_t nuc_count;
+    size_t sizet_count;
+    
 public:
     void print_rna() const;
     class reference {
@@ -35,7 +35,8 @@ public:
     RNA();
     ~RNA();
     RNA(const RNA&);
-
+    
+    nucls get_nucl(size_t) const;
     void add_nucl(int);
 
     RNA split(size_t);
