@@ -16,9 +16,9 @@ enum nucls {
 
 class RNA {
     size_t* rna;
-    size_t nuc_count;
-    size_t sizet_count;
-    
+    size_t nuc_count ;
+    size_t sizet_count ;
+
 public:
     void print_rna() const;
     class reference {
@@ -27,7 +27,7 @@ public:
     public:
         reference(size_t, RNA&);
         ~reference();
-        explicit operator nucls() const;
+        operator nucls() const;
         reference& operator=(nucls);
         reference& operator=(reference);
     };
@@ -35,21 +35,22 @@ public:
     RNA();
     ~RNA();
     RNA(const RNA&);
-    
-    nucls get_nucl(size_t) const;
+
     void add_nucl(int);
+    nucls get_nucl(size_t) const;
 
     RNA split(size_t);
     RNA trim(size_t);
 
     bool is_Complementary(RNA&);
-    static size_t  length(const RNA&);
+
 
     friend RNA operator +(RNA&, RNA&);
     bool operator !=(const RNA&);
     bool operator ==(const RNA&);
     RNA operator!();
     RNA& operator =(const RNA&);
+
     reference operator[](size_t);
     nucls operator[] (size_t) const;
 };
