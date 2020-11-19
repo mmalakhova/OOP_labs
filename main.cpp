@@ -202,7 +202,7 @@ TEST(test_sq_brackets_cast, test_17)/* NOLINT */
 
 TEST(test_sq_brackets_insert, test_18)/* NOLINT */
 {
-    RNA r1 = creation("AAAAAAAAAAAAAAAAAAAA");
+    RNA r1;
     std :: string str = "AGTAGCTAGCAATCGTAGCA";
     RNA r2;
     r2 = creation(str);
@@ -253,20 +253,38 @@ TEST(test_million_nucls, test_20)/* NOLINT */
     EXPECT_FALSE(r1 == r2);
 }
 
+TEST(test_trim, test_21)/* NOLINT */
+{
+    RNA r2 = creation("GCATCGCAG");
+    RNA r1 = creation("GCATCGCAGAGTCCGTTCGAGCTGTTCGAACG");
+    r1 = r1.trim(10);
+    EXPECT_EQ(true, r1 == r2);
+}
+TEST (test_split, test_22)/* NOLINT */
+{
+    RNA r1, r2, r3, r4;
+    r1 = creation("AGCGATCAGAGCATACTAGTAGCGACATCAGT");
+    r2 = creation("AGCGATCAGAGCATACTAG");
+    r3 = creation("TAGCGACATCAGT");
+    r4 = r1.split(20);
+
+    EXPECT_EQ(true, r1 == r2);
+}
+
+TEST ( test_split, test_23)/* NOLINT */
+{
+    RNA r1, r2, r3, r4;
+    r1 = creation("AGCGATCAGAGCATACTAGTAGCGACATCAGT");
+    r2 = creation("AGCGATCAGAGCATACTAG");
+    r3 = creation("TAGCGACATCAGT");
+    r4 = r1.split(20);
+
+    EXPECT_EQ(true, r3 == r4);
+}
+
 
 int main(int argc, char* argv[]) {
     testing :: InitGoogleTest(&argc, argv);
-
-    RNA rna_test1, rna_test2, rna_test3;
-    rna_test1 = creation("AGTAAAAAAAAA");
-    rna_test2 = creation("AAA");
-    rna_test3 = creation("AGTAAAAAAAAA");
-
-    RNA rna2(rna_test1);
-
-    RNA r1 = creation("CGACGA");
-    RNA r2 = creation("GCTGCT");
-    RNA r3 = r1 + r2;
 
     return RUN_ALL_TESTS();
 }
