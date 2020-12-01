@@ -8,7 +8,7 @@ RNA::RNA() {
 }
 
 RNA::~RNA() {
-    delete rna;
+    delete[] rna;
 }
 
 RNA::reference::operator nucls() const {
@@ -27,7 +27,7 @@ RNA::reference & RNA::reference :: operator=(nucls n) {
     } else {
         size_t idx_nuc = (size_t) ceil((float)num /(float) NUCL) - 1 ;
         size_t shift = (NUCL - (num - NUCL * idx_nuc)) * 2;
-        rna.rna[idx_nuc] = (rna.rna[idx_nuc] & ~((size_t)3 << shift)) |((size_t)n << shift);
+        rna.rna[idx_nuc] = (rna.rna[idx_nuc] & ~((size_t)3 << shift)) | ((size_t)n << shift);
     }
     return (*this);
 }
@@ -75,7 +75,8 @@ void RNA::add_nucl(int nucl) {
         sizet_count++;
     }
     else if (nuc_count / sizet_count >= NUCL) {
-        auto* new_arr = new size_t[sizet_count + 1];
+        //auto* new_arr = new size_t[sizet_count + 1];
+        auto* new_arr = new size_t[sizet_count*2];
         for (size_t i = 0; i < sizet_count; i++) {
             new_arr[i] = rna[i];
         }
@@ -97,6 +98,7 @@ void RNA::add_nucl(int nucl) {
 
 RNA RNA::split(size_t idx) {
     RNA second;
+    if (rna == nullptr) return (*this);
     for (size_t i = idx; i <= nuc_count; i++){
         size_t nuc = (*this)[i];
         second.add_nucl(nuc);
@@ -115,6 +117,7 @@ RNA RNA::split(size_t idx) {
 }
 
 RNA RNA::trim(size_t idx) {
+    if (rna == nullptr) return (*this);
     sizet_count = (size_t)ceil((float)(idx - 1)/(float)NUCL);
     nuc_count = idx-1;
     auto* foo = new size_t[sizet_count];
@@ -141,9 +144,9 @@ RNA operator+( RNA& rna1, RNA& rna2) {
 }
 
 bool RNA::operator==(const RNA& rna2) {
-
+    if ( nuc_count == 0 && rna2.nuc_count == 0) return true;
     if ( nuc_count != rna2.nuc_count) return false;
-    if ( nuc_count == rna2.nuc_count == 0) return true;
+
     for (size_t i = 0; i < sizet_count-1 ; i++) {
         if (rna[i] != rna2.rna[i]) return false;
     }
@@ -168,17 +171,13 @@ bool RNA::operator!=(const RNA& rna2) {
 
 
 RNA RNA::operator!() {
-    for (size_t i = 0; i < nuc_count / NUCL; i++) {
-        rna[i] = ~rna[i];
+
+    for (size_t i = 0; i < sizet_count; i++) {
+        rna[i] = ~(rna[i]);
     }
-    if (nuc_count % NUCL != 0) {
-        for (size_t i = 0; i < nuc_count / NUCL + 1; i++) {
-            rna[i] = ~rna[i];
-        }
-        rna[nuc_count / NUCL + 1] >>= NUCL - (nuc_count % NUCL);
-        rna[nuc_count / NUCL + 1] <<= NUCL - (nuc_count % NUCL);
-    }
+
     return (*this);
+
 }
 
 
