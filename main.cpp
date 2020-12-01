@@ -128,7 +128,7 @@ TEST (test_operator_neg, test_12)/* NOLINT */
 TEST ( test_operator_neg, test_13)/* NOLINT */
 {
     RNA r1 = creation("CACACACACA");
-    RNA r2 = creation("GTGTGTGTGT");
+    RNA r2 = creation("TGTGTGTGTG");
     EXPECT_EQ(true, r1 == !r2);
 }
 
@@ -142,7 +142,7 @@ TEST (test_complimentary, test_14)/* NOLINT */
 TEST( test_complimentary, test_15)/* NOLINT */
 {
     RNA r1 = creation("CACACACACA");
-    RNA r2 = creation("GTGTGTGTGT");
+    RNA r2 = creation("TGTGTGTGTG");
     EXPECT_EQ(true, r1.is_Complementary(r2));
 }
 
@@ -282,6 +282,19 @@ TEST ( test_split, test_23)/* NOLINT */
     EXPECT_EQ(true, r3 == r4);
 }
 
+TEST (test_trim, test_24) /*NOLINT*/
+{
+    RNA r1, r2;
+    r2 = r1.trim(1);
+    EXPECT_EQ(true, r1 == r2);
+}
+
+TEST (test_split, test_25) /*NOLINT*/
+{
+    RNA r1, r2;
+    r2 = r1.split(20);
+    EXPECT_EQ(true, r1 == r2);
+}
 
 int main(int argc, char* argv[]) {
     testing :: InitGoogleTest(&argc, argv);
