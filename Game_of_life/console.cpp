@@ -2,23 +2,20 @@
 #include <iostream>
 
 string console::get_com_option(){
-    string com;
-    cin >> com;
-    return com;
+    string comand;
+    cin >> comand;
+    return comand;
 }
 
 string console::get_com_arguments() {
-    string com, arg;
-    cin >> com;
-    unsigned int k=0;
-    while(com[k]!=' '){
-        k++; }
-    k++;
-    for ( unsigned int i =0; i<2; i++){
-        arg[i] = com[k];
-        k++;
-    }
-return arg;
+    string com;
+    char arg[2];
+    getline(std::cin, com);
+
+    arg[0] = com[com.length()-2];
+    arg[1] = com[com.length()-1];
+
+    return arg;
 }
 
 
