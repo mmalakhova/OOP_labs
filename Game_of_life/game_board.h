@@ -30,7 +30,7 @@ private:
 
     void init_board(){
         for (size_t h = 0; h < HEIGHT; h++){
-            for ( size_t w =0; w < WIDTH; w++){
+            for ( size_t w = 0; w < WIDTH; w++){
                 curr_gen[h][w] = DEAD;
                 prev_gen[h][w] = DEAD;
             }
@@ -48,14 +48,14 @@ public:
     game_board();
     ~game_board();
     bool end_game();
-    game_board(const game_board& );
     bool load_board();
     bool save_board();
     void show_board();
     void next_state();
     size_t neighbour_count(size_t, size_t);
+    void show_step_count() const;
     void reset();
-    void clear();
+    void clear(size_t, size_t);
     void add_live_cell(size_t, size_t);
     void back();
     friend std:: ostream& operator<< (std:: ostream &, game_board&);
