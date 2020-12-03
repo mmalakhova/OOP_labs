@@ -10,7 +10,7 @@ bool compare_matrix(char** m1, char** m2) {
     }
     return true;
 }
-
+//cherez swap
 void reassign_boards(char** m1, char** m2) {
     for (size_t  i = 0; i < HEIGHT; i++){
         memcpy(m1[i], m2[i], sizeof(char)*HEIGHT);
@@ -18,28 +18,34 @@ void reassign_boards(char** m1, char** m2) {
 }
 
 
-bool game_board::load_board() {
+bool game_board::load_board()  {
     std::ifstream in;
     in.open(R"(C:\Users\user\CLionProjects\game_of_life\in.txt)");
     if (in.is_open()){
-        for (size_t r =0; r < WIDTH; r++){
-            for (size_t c =0; c < HEIGHT; c++){
-                in >> curr_gen[r][c];
+        for (size_t h = 0; h <HEIGHT; h++){
+            for (size_t w = 0; w <WIDTH; w++){
+                in >> curr_gen[h][w];
             }
         }
     }
     in.close();
+    step_count = 0;
     return false;
 
 }
+
 
 bool game_board::save_board() {
     ofstream  out;
     out.open(R"(C:\Users\user\CLionProjects\game_of_life\out.txt)");
     if (out.is_open()){
-        for (size_t r =0; r < WIDTH; r++){
-            for (size_t c =0; c < HEIGHT; c++){
-                out << " " << curr_gen[r][c] << " ";
+        out << "  0  1  2  3  4  5  6  7  8  9" << endl;
+        for (size_t  h=0; h < HEIGHT; h++){
+            char c;
+            c = 'A' + h;
+            cout << c ;
+            for (size_t w =0; w < WIDTH; c++){
+                out << " " << curr_gen[h][w] << " ";
             }
             out << endl;
         }
@@ -49,7 +55,11 @@ bool game_board::save_board() {
 }
 
 void game_board::show_board() {
+    cout << "  0  1  2  3  4  5  6  7  8  9" << endl;
     for (size_t h = 0; h < HEIGHT; h ++){
+        char c;
+        c = 'A' + h;
+        cout << c ;
         for (size_t w = 0; w < WIDTH; w++){
             cout << " " << curr_gen[h][w] << " ";
         }
@@ -71,42 +81,29 @@ void game_board::next_state() {
             count_live = neighbour_count(h, w);
 
             //RULES
-            if (count_live < 2 && curr_gen[h][w] == LIVE) { curr_gen[h][w] = DEAD;}
-            else if ((count_live == 2 || count_live == 3) && curr_gen[h][w] == LIVE) { curr_gen[h][w] = LIVE;}
-            else if (count_live > 3 && curr_gen[h][w] == LIVE) { curr_gen[h][w] = DEAD;}
-            else if (count_live == 3 && curr_gen[h][w] == DEAD) { curr_gen[h][w] = LIVE;}
+            if (count_live < 2 && prev_gen[h][w] == LIVE) {curr_gen[h][w] = DEAD;}
+            if ((count_live == 2 || count_live == 3) && prev_gen[h][w] == LIVE) {curr_gen[h][w] = LIVE;}
+            if (count_live > 3 && prev_gen[h][w] == LIVE) { curr_gen[h][w] = DEAD;}
+            if (count_live == 3 && prev_gen[h][w] == DEAD) { curr_gen[h][w] = LIVE;}
         }
     }
+
     step_count++;
     ispossible_go_back = true;
 }
 
 size_t game_board::neighbour_count(size_t x, size_t y) {
     size_t live_count = 0;
-    bool is_not_lower = (y-1) >= 0;
-    bool is_not_upper = (y+1) < HEIGHT;
 
-    if ( x-1 >= 0){
-        if (is_not_lower && (curr_gen[x-1][y-1] == LIVE)) {live_count++;}
-        if (curr_gen[x-1][y] == LIVE) {live_count++;}
-        if (is_not_upper && (curr_gen[x-1][y+1] == LIVE)) {live_count++;}
+for ( size_t i = x -1; i <= x+1; i++){
+    for ( size_t j = y-1; j <= y+1; j++){
+        if ( i != x || j != y){
+            if (prev_gen[(i+HEIGHT)%HEIGHT][(j+WIDTH)%WIDTH] == LIVE) live_count++;
+        }
     }
+}
 
-    if (x+1 < WIDTH) {
-        if(is_not_lower && (curr_gen[x+1][y-1] == LIVE) )
-            live_count++;
-        if(curr_gen[x+1][y] == LIVE)
-            live_count++;
-        if(is_not_upper && (curr_gen[x+1][y+1] == LIVE) )
-            live_count++;
-    }
-
-    if( is_not_upper && curr_gen[x][y+1] == LIVE)
-        live_count++;
-    if(is_not_lower && (curr_gen[x][y-1] == LIVE) )
-        live_count++;
-
-    return live_count;
+ return live_count;
 }
 
 game_board::game_board() {
@@ -121,14 +118,6 @@ game_board::~game_board() {
     step_count = 0;
 }
 
-game_board::game_board(const game_board &game_board_to_copy) {
-    step_count = game_board_to_copy.step_count;
-    for ( int  i = 0; i < HEIGHT; i++){
-        memcpy(curr_gen[i], game_board_to_copy.curr_gen[i], sizeof(char)*HEIGHT);
-        memcpy(prev_gen[i], game_board_to_copy.prev_gen[i], sizeof(char)*HEIGHT);
-    }
-}
-
 
 void game_board::reset() {
     for (size_t h = 0; h < HEIGHT; h++){
@@ -140,25 +129,23 @@ void game_board::reset() {
     ispossible_go_back = false;
 }
 
-void game_board::clear() {
-    for ( int h = 0; h < HEIGHT; h++){
-        for ( int w = 0; w < WIDTH; w++){
-            curr_gen[h][w] = DEAD;
-        }
-    }
+void game_board::clear(size_t x, size_t y) {
+    curr_gen[x][y] = DEAD;
     step_count++;
-    ispossible_go_back = true;
+   ispossible_go_back = true;
 }
 
 void game_board::add_live_cell(size_t x, size_t y) {
+    reassign_boards(prev_gen, curr_gen);
     if ( x > HEIGHT || x < 0 || y > WIDTH || y < 0) return;
     if (curr_gen[x][y] == LIVE) { cout << "Oooops...this place's already taken"<< endl;}
     else { curr_gen[x][y] = LIVE;}
     ispossible_go_back = true;
+    step_count++;
 }
 
 void game_board::back() {
-    if (step_count == 1) {
+    if (step_count == 0) {
         cout << "It's impossible to step back....";
         return;
     }
@@ -166,27 +153,39 @@ void game_board::back() {
         cout << "It's impossible to step back....";
         return;
     }
-    if (compare_matrix(prev_gen, curr_gen)) return;
-    reassign_boards(curr_gen, prev_gen);
-    show_board();
+
+    swap(curr_gen, prev_gen);
     ispossible_go_back = false;
+    step_count++;
 }
 
 
-
 bool game_board::end_game() {
-    if (compare_matrix(prev_gen,curr_gen)) return true;
+
+    if (compare_matrix(prev_gen,curr_gen) && step_count != 0) return true;
     else return false;
 }
 
 std::ostream &operator<<(ostream &out, game_board &game) {
+    cout << "  0  1  2  3  4  5  6  7  8  9" << endl;
     for (size_t h = 0; h < HEIGHT; h ++){
+        char c;
+        c = 'A' + h;
+        cout << c ;
         for (size_t w = 0; w < WIDTH; w++){
-            out << " " << game.curr_gen[h][w] << " ";
+            cout << " " << game.curr_gen[h][w] << " ";
         }
-        out << endl;
+        cout << endl;
     }
-    out << endl;
+    cout << endl;;
     return out;
 }
+
+void game_board::show_step_count() const {
+    cout <<"STEP: " << step_count << endl;
+}
+
+
+
+
 
