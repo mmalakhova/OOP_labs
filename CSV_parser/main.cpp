@@ -30,7 +30,7 @@ ostream& operator<<(ostream& out, const tuple<T...>& tup) {
 
 int main()
 {
-    ifstream file("data2.csv");
+    ifstream file("test.csv");
  
     CSVParser<int, string> parser(file, true, ';');
     
