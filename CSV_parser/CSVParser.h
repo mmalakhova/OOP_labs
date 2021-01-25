@@ -1,4 +1,3 @@
-
 #ifndef LABA_4_PARSER_CSV_CSVPARSER_H
 #define LABA_4_PARSER_CSV_CSVPARSER_H
 
@@ -12,18 +11,6 @@
 #include <cxxabi.h>
 #include <vector>
 #include "TuplePrintUtility.h"
-
-template<typename T>
-std::string GetTypeName() {
-    int status;
-    std::string tName = typeid(T).name();
-    char *demangled_name = abi::__cxa_demangle(tName.c_str(), nullptr, nullptr, &status);
-    if (status == 0) {
-        tName = demangled_name;
-        std::free(demangled_name);
-    }
-    return tName;
-}
 
 template<typename ... Args>
 class CSVReader {
@@ -131,7 +118,7 @@ private:
         std::stringstream convert(curField);
         if ((convert >> t).fail() || !(convert >> std::ws).eof()) {
             std::stringstream stringstream;
-            stringstream << "Couldn't parse value (expected type: " << GetTypeName<T>() << "): " << curField;
+            stringstream << "Couldn't parse value (expected type:" << curField;
             throw std::invalid_argument(stringstream.str() + "Line = " + std::to_string(cntOfReadLines) + " Column = " +
                                         std::to_string(curValuePos + 1) + "\n\t line: " + nextLine);
         }
