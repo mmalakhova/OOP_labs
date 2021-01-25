@@ -1,50 +1,14 @@
-#define _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS
 #include <iostream>
-#include <ostream>
-#include <string>
 #include <tuple>
-#include <algorithm>
-#include "parser.h"
+#include <fstream>
+#include "CSVParser.h"
 
 using namespace std;
 
-
-template<class TupType, size_t... I>
-void print(const TupType& _tup, index_sequence<I...>, ostream& out)
-{
-
-    (..., (out << (I == 0 ? "" : ", ") << get<I>(_tup)));
-
-}
-
-
-template<class...T>
-ostream& operator<<(ostream& out, const tuple<T...>& tup) {
-    
-    print(tup, make_index_sequence<sizeof...(T)>(), out);
-    return out;
-}
-
-
-
-
-int main()
-{
-    ifstream file("test.csv");
- 
-    CSVParser<int, string> parser(file, true, ';');
-    
-    try {
-        for (tuple<int, string> rs : parser) {
-            cout << rs << endl;
-            system("pause");
-        }
+int main() {
+    ifstream file("in.csv");
+    CSVParser<int, string>parser (file, 1, '\n', ',', '\"');
+    for (const tuple<int, std::string>& rs : parser) { // считываем по 1 кортежу из строки
+        std::cout << rs << std::endl;
     }
-    catch (exception& ex) {
-        cout << "Exception caught: " << ex.what() << endl;
-
-    }
- 
-    return 0;
 }
-
