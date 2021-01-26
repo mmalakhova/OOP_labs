@@ -1,3 +1,4 @@
+
 #ifndef LABA_4_PARSER_CSV_CSVPARSER_H
 #define LABA_4_PARSER_CSV_CSVPARSER_H
 
@@ -11,10 +12,12 @@
 #include <vector>
 #include "TuplePrintUtility.h"
 
+
+
 template<typename ... Args>
 class CSVReader {
 public:
-    explicit CSVReader(char lineDelimiter = '\n', char valueDelimiter = ';', char fieldDelimiter = '\"') :
+    explicit CSVReader(char lineDelimiter = '\n', char valueDelimiter = ',', char fieldDelimiter = '\"') :
             lineDelimiter(lineDelimiter),
             valueDelimiter(valueDelimiter),
             fieldDelimiter(fieldDelimiter) {}
@@ -53,6 +56,7 @@ private:
         size_t curPos = 0;
         for (char c : nextLine) {
             switch (state) {
+
                 case CSVState::UnescapedField:
                     if (c == valueDelimiter) {
                         lineFields.emplace_back("");
@@ -64,6 +68,7 @@ private:
                         lineFields[i].push_back(c);
                     }
                     break;
+
                 case CSVState::EscapedField:
                     if (c == fieldDelimiter) {
                         state = CSVState::EscapedEscape;
@@ -71,6 +76,7 @@ private:
                         lineFields[i].push_back(c);
                     }
                     break;
+
                 case CSVState::EscapedEscape:
                     if (c == valueDelimiter) {
                         lineFields.emplace_back("");
@@ -96,7 +102,7 @@ private:
         curValuePos = 0;
         curFieldIndex = 0;
         if (nextLine.empty()) {
-            throw std::invalid_argument("Line is empty:\n\t Line = " + std::to_string(curValuePos + 1) +
+            throw std::invalid_argument("Line is empty:\n Line = " + std::to_string(curValuePos + 1) +
                                         " Column = " + std::to_string(cntOfReadLines));
         }
 
@@ -108,32 +114,38 @@ private:
             std::stringstream stringstream;
             stringstream << "Unexpected value! " << lineFields[curFieldIndex];
             throw std::invalid_argument(stringstream.str() + "Line = " + std::to_string(cntOfReadLines) + " Column = " +
-                                        std::to_string(curValuePos + 1) + "\n\t line: " + nextLine);
+                                        std::to_string(curValuePos + 1) + "\n line: " + nextLine);
         }
     }
+
+
     template<typename T>
     void readValue(T &t) {
         std::string curField = lineFields[curFieldIndex];
         std::stringstream convert(curField);
-        if ((convert >> t).fail() || !(convert >> std::ws).eof()) {
+        if ((convert >> t).fail()) {
+
             std::stringstream stringstream;
-            stringstream << "Couldn't parse value (expected type:" << curField;
+            stringstream << "Couldn't parse value : " << curField;
             throw std::invalid_argument(stringstream.str() + "Line = " + std::to_string(cntOfReadLines) + " Column = " +
-                                        std::to_string(curValuePos + 1) + "\n\t line: " + nextLine);
+                                        std::to_string(curValuePos + 1) + "\n line: " + nextLine);
         }
         curValuePos = delimitersPos[curFieldIndex] + 1;
         curFieldIndex++;
     }
 };
 
+//_______ITERATOR_________//
+
 template<typename ... Args>
 class CSVIterator {
 public:
-    explicit CSVIterator(std::istream &basicIstream, char lineDelimiter = '\n', char valueDelimiter = ',',
+    explicit CSVIterator(std::istream &basicIstream, char lineDelimiter = '\n',
+                         char valueDelimiter = ',',
                          char fieldDelimiter = '\"') :
             istream(basicIstream),
             canRead(basicIstream.good()),
-            csvReader(lineDelimiter, valueDelimiter, fieldDelimiter) {++(*this); } //TODO: зачем
+            csvReader(lineDelimiter, valueDelimiter, fieldDelimiter) {++(*this); }
 
     explicit CSVIterator(std::istream &s, bool isEnd) : istream(s), canRead(!isEnd), csvReader() {}
 
@@ -174,6 +186,8 @@ private:
     CSVReader<Args...> csvReader;
 };
 
+//_________PARSER____________//
+
 template<typename ... Args>
 class CSVParser {
 private:
@@ -187,7 +201,7 @@ public:
     explicit CSVParser(std::istream &_istream,
                        size_t skipLinesCount = 0,
                        char lineDelimiter = '\n',
-                       char valueDelimiter = ';',
+                       char valueDelimiter = ',',
                        char fieldDelimiter = '\"') :
             inputStream(_istream),
             lineDelimiter(lineDelimiter),
