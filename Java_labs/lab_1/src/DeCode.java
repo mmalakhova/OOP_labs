@@ -1,21 +1,18 @@
 import java.io.*;
 
 class DeCode implements Handler{
-    DeCode(){}
     public void secret(InputStreamReader file, MorseABC abc) throws java.io.IOException {
-        Statistic stat = new Statistic();
+        StatisticGen stat = new StatisticGen();
         int ch;
         int count = 0;
         StringBuilder strb = new StringBuilder();
-        try
-                (
-                        Writer ou = new OutputStreamWriter(new FileOutputStream("decoded.code"))
-                )
-        {
+        Writer ou = null;
+        try{
+            ou = new OutputStreamWriter(new FileOutputStream("eng_decoded.txt"));
             while((ch = file.read()) != -1){
                 if(ch == ' '){
                     if(count == 0 && strb.length() != 0){
-                        char c = abc.getDeCode(strb.toString());
+                        char c = abc.decode(strb.toString());
                         if(c == '$') ou.write("\n", 0, 1);
                         else ou.write(Character.toString(c), 0, 1);
                         strb = new StringBuilder();
@@ -31,17 +28,29 @@ class DeCode implements Handler{
                 }
                 stat.makeNote((char)ch);
             }
+
             if(strb.length() - 1 > 0){
                 strb.deleteCharAt(strb.length() - 1);
-                char c = abc.getDeCode(strb.toString());
+                char c = abc.decode(strb.toString());
                 if(c == '$') ou.write("\n", 0, 1);
                 else ou.write(Character.toString(c), 0, 1);
-                //strb = new StringBuilder();
             }
             stat.printToFile();
         }
+
         catch (IOException e){
             System.err.println("Error while writing file: " + e.getLocalizedMessage());
         }
+        finally {
+            if (null != ou) {
+                try {
+                    ou.close();
+                }
+                catch (IOException e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+
     }
 }

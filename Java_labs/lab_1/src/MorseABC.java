@@ -2,26 +2,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class MorseABC{
-    private final Map<Character, String> table;
+    private final Map<Character, String> table_code;
+    private final Map<String, Character> table_decode;
 
     MorseABC(){
-        table = new HashMap<>();
+        table_code = new HashMap<>();
+        table_decode = new HashMap<>();
     }
 
     void makeNote(Character ch, String str){
-        table.put(ch, str);
+        table_code.put(ch, str);
+    }
+    void makeNote(String str, Character ch){
+        table_decode.put(str, ch);
     }
 
-    String getCode(Character ch){
-        return table.get(ch);
+    String code(Character ch){
+        return table_code.get(ch);
     }
 
-    Character getDeCode(String str){
-        for(Character key : table.keySet()){
-            if (table.get(key).equals(str)){
-                return key;
-            }
-        }
-        return null;
-    }
+    Character decode(String str) { return table_decode.get(str);}
+    
 }

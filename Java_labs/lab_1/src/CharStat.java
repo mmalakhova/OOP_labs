@@ -1,4 +1,3 @@
-
 class CharStat{
     private final char ch;
     private int stat;
@@ -16,7 +15,7 @@ class CharStat{
     }
 
     void incCh(){
-        ++(stat);
+        ++stat;
     }
 
     public boolean equals(Object stat){
