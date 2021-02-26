@@ -22,5 +22,5 @@ public final class MorseABC{
     }
 
     Character decode(String str) { return table_decode.get(str);}
-    
+
 }
