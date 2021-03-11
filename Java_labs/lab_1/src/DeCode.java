@@ -28,6 +28,13 @@ class DeCode implements Handler{
                 }
                 stat.makeNote((char)ch);
             }
+            if(strb.length() - 1 > 0){
+                strb.deleteCharAt(strb.length() - 1);
+                char c = abc.decode(strb.toString());
+                if(c == '$') ou.write("\n", 0, 1);
+                else ou.write(Character.toString(c), 0, 1);
+                strb = new StringBuilder();
+            }
 
             stat.printToFile();
         }

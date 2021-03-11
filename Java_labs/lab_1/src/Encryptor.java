@@ -18,7 +18,7 @@ class Encryptor{
             while((line = readABC.readLine()) != null){
                 splited = line.split(" ");
                 abc.makeNote(splited[0].charAt(0), splited[1]);
-                abc.makeNote(splited[1], splited[0].charAt(0));
+               // abc.makeNote(splited[1], splited[0].charAt(0));
             }
         }
         catch (IOException e){
@@ -56,7 +56,10 @@ class Encryptor{
             InputStreamReader file = null;
             try{
                 file = new InputStreamReader(new FileInputStream(comm[1]));
+                long startTime = System.currentTimeMillis();
                 make.get(comm[0]).secret(file, abc);
+                long endTime = System.currentTimeMillis();
+                System.out.println("Total coding/decoding time: " + (endTime - startTime) + " ms");
             }
             catch (IOException e){
                 System.err.println("Error while reading file: " + e.getLocalizedMessage());
