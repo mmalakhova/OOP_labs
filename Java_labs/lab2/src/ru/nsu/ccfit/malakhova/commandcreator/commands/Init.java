@@ -2,10 +2,11 @@ package ru.nsu.ccfit.malakhova.commandcreator.commands;
 
 import ru.nsu.ccfit.malakhova.area.Field;
 import ru.nsu.ccfit.malakhova.area.Position;
+import ru.nsu.ccfit.malakhova.commandcreator.CommandInterface;
 
 import java.util.logging.Logger;
 
-public class Init {
+public class Init implements CommandInterface {
     private static final Logger logger = Logger.getLogger(Init.class.getName());
 
     public void execute(String[] args, Field field) throws IllegalArgumentException{
