@@ -4,6 +4,7 @@ import ru.nsu.ccfit.malakhova.area.Field;
 import ru.nsu.ccfit.malakhova.commandcreator.CommandFactory;
 import ru.nsu.ccfit.malakhova.commandcreator.CommandInterface;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.logging.*;
 import java.io.*;
 import java.util.*;
@@ -40,6 +41,14 @@ public class Interpreter {
                 exception.printStackTrace();
             }
             catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (NoSuchMethodException e) {
                 e.printStackTrace();
             }
         }
