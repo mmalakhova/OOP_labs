@@ -1,6 +1,6 @@
 package ru.nsu.ccfit.malakhova.commandcreator;
 
-import ru.nsu.ccfit.malakhova.ClassIdentifier;
+import ru.nsu.ccfit.malakhova.*;
 import java.io.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
