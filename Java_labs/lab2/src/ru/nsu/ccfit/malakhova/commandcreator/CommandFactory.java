@@ -7,8 +7,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 public class CommandFactory {
-    private Map<String, Class> commands = new HashMap<String, Class>();
-    private ClassIdentifier agent = new ClassIdentifier();
+    private final Map<String, Class<?>> commands = new HashMap<>();
+    private final ClassIdentifier agent = new ClassIdentifier();
 
     public CommandInterface create(String name) throws IOException, ClassNotFoundException, InvocationTargetException,
             InstantiationException, IllegalAccessException, NoSuchMethodException {
@@ -16,8 +16,8 @@ public class CommandFactory {
             commands.put(name, Class.forName(agent.find(name)));
         }
 
-        Class object = commands.get(name);
-        Constructor constructor = (Constructor)object.getConstructor();
+        Class<?> object = commands.get(name);
+        Constructor<?> constructor = object.getConstructor();
         return (CommandInterface)constructor.newInstance();
     }
 }

@@ -25,13 +25,17 @@ public class Interpreter {
                 logger.info("Parsing command");
                 if(parser.getName().equals("END")){
                     logger.info("Execution finished");
+                    return;
                 }
                 logger.info("Creating command object");
                 CommandInterface command = factory.create(parser.getName());
                 logger.info("Command created");
-                logger.info("Printing field");
+                logger.info("Run command!");
+                command.execute(parser.getArgs(), field);
+                logger.info("Command finished!");
+                logger.info("Start printing field!");
                 field.printField();
-                logger.info("Printing completed");
+                logger.info("Printing completed!");
             }
             catch(IllegalArgumentException e){
                 logger.warning(e.getMessage());
