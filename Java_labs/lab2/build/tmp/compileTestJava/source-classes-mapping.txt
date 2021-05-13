@@ -1,0 +1,18 @@
+ru/nsu/ccfit/malakhova/commandcreator/commands/InitTest.java
+ ru.nsu.ccfit.malakhova.commandcreator.commands.InitTest
+ru/nsu/ccfit/malakhova/commandcreator/commands/DrawTest.java
+ ru.nsu.ccfit.malakhova.commandcreator.commands.DrawTest
+ru/nsu/ccfit/malakhova/commandcreator/commands/MoveTest.java
+ ru.nsu.ccfit.malakhova.commandcreator.commands.MoveTest
+ru/nsu/ccfit/malakhova/commandcreator/commands/TeleportTest.java
+ ru.nsu.ccfit.malakhova.commandcreator.commands.TeleportTest
+ru/nsu/ccfit/malakhova/commandcreator/commands/WardTest.java
+ ru.nsu.ccfit.malakhova.commandcreator.commands.WardTest
+ru/nsu/ccfit/malakhova/area/FieldTest.java
+ ru.nsu.ccfit.malakhova.area.FieldTest
+ru/nsu/ccfit/malakhova/area/PositionTest.java
+ ru.nsu.ccfit.malakhova.area.PositionTest
+ru/nsu/ccfit/malakhova/ClassIdentifierTest.java
+ ru.nsu.ccfit.malakhova.ClassIdentifierTest
+ru/nsu/ccfit/malakhova/ParserTest.java
+ ru.nsu.ccfit.malakhova.ParserTest

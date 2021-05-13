@@ -1,0 +1,24 @@
+ru/nsu/ccfit/malakhova/ClassIdentifier.java
+ ru.nsu.ccfit.malakhova.ClassIdentifier
+ru/nsu/ccfit/malakhova/Parser.java
+ ru.nsu.ccfit.malakhova.Parser
+ru/nsu/ccfit/malakhova/area/Position.java
+ ru.nsu.ccfit.malakhova.area.Position
+ru/nsu/ccfit/malakhova/area/Field.java
+ ru.nsu.ccfit.malakhova.area.Field
+ru/nsu/ccfit/malakhova/commandcreator/commands/Move.java
+ ru.nsu.ccfit.malakhova.commandcreator.commands.Move
+ru/nsu/ccfit/malakhova/commandcreator/commands/Init.java
+ ru.nsu.ccfit.malakhova.commandcreator.commands.Init
+ru/nsu/ccfit/malakhova/Interpreter.java
+ ru.nsu.ccfit.malakhova.Interpreter
+ru/nsu/ccfit/malakhova/commandcreator/CommandFactory.java
+ ru.nsu.ccfit.malakhova.commandcreator.CommandFactory
+ru/nsu/ccfit/malakhova/commandcreator/commands/Ward.java
+ ru.nsu.ccfit.malakhova.commandcreator.commands.Ward
+ru/nsu/ccfit/malakhova/commandcreator/commands/Teleport.java
+ ru.nsu.ccfit.malakhova.commandcreator.commands.Teleport
+ru/nsu/ccfit/malakhova/commandcreator/CommandInterface.java
+ ru.nsu.ccfit.malakhova.commandcreator.CommandInterface
+ru/nsu/ccfit/malakhova/commandcreator/commands/Draw.java
+ ru.nsu.ccfit.malakhova.commandcreator.commands.Draw
