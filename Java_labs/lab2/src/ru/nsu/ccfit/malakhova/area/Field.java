@@ -26,11 +26,12 @@ public class Field implements Comparable<Field> {
     }
 
     public void createField(Position playerPosition, Position fieldSize) throws IllegalArgumentException{
-        if ( fieldSize.getX() <= 0 || fieldSize.getY() <= 0) throw new IllegalArgumentException("Incorrect field size...");
-        if (playerPosition.getX() < 0 || playerPosition.getY() < 0 || playerPosition.getX() > this.fieldSize.getX() - 1 || playerPosition.getY() > this.fieldSize.getY() - 1) throw new IllegalArgumentException("Incorrect coordinates...");
-
         this.playerPosition = playerPosition;
         this.fieldSize = fieldSize;
+        if ( this.fieldSize.getX() <= 0 || this.fieldSize.getY() <= 0) throw new IllegalArgumentException("Incorrect field size...");
+        if (this.playerPosition.getX() < 0 || this.playerPosition.getY() < 0 || this.playerPosition.getX() > this.fieldSize.getX() - 1 || this.playerPosition.getY() > this.fieldSize.getY() - 1) throw new IllegalArgumentException("Incorrect coordinates...");
+
+
         this.field = new boolean[this.fieldSize.getX()][this.fieldSize.getY()];
         this.exist = true;
     }
