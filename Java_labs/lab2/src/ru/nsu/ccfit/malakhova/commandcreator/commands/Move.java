@@ -25,32 +25,32 @@ public class Move implements CommandInterface {
                 for (int i = 0; i < stepCount; i++) {
                     if (draw) field.setPositionMark(playerPos, true);
 
-                    playerPos.setX((playerPos.getX()) - 1);
-                    if (playerPos.getX() < 0) playerPos.setX((fieldSize.getX()) - 1);
+                    playerPos.setY((playerPos.getY()) - 1);
+                    if (playerPos.getY() < 0) playerPos.setY((fieldSize.getY()) - 1);
                 }
                 break;
             case "R":
                 for (int i = 0; i < stepCount; i++) {
                     if (draw) field.setPositionMark(playerPos, true);
 
-                    playerPos.setX((playerPos.getX()) + 1);
-                    if (playerPos.getX() == fieldSize.getX()) playerPos.setX(0);
+                    playerPos.setY((playerPos.getY()) + 1);
+                    if (playerPos.getY() == fieldSize.getY()) playerPos.setY(0);
                 }
                 break;
             case "U":
                 for (int i = 0; i < stepCount; i++) {
                     if (draw) field.setPositionMark(playerPos, true);
 
-                    playerPos.setY((playerPos.getY()) - 1);
-                    if (playerPos.getY() < 0) playerPos.setY((fieldSize.getY()) - 1);
+                    playerPos.setX((playerPos.getX()) - 1);
+                    if (playerPos.getX() < 0) playerPos.setX((fieldSize.getX()) - 1);
                 }
                 break;
             case "D":
                 for (int i = 0; i < stepCount; i++) {
                     if (draw) field.setPositionMark(playerPos, true);
 
-                    playerPos.setY((playerPos.getY()) + 1);
-                    if (playerPos.getY() == fieldSize.getY()) playerPos.setY(0);
+                    playerPos.setX((playerPos.getX()) + 1);
+                    if (playerPos.getX() == fieldSize.getX()) playerPos.setX(0);
                 }
                 break;
             default:
