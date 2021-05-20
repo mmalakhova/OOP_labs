@@ -56,6 +56,7 @@ public class Move implements CommandInterface {
             default:
                 throw new IllegalArgumentException("Bad way arg!");
         }
+        logger.setUseParentHandlers(false);
         logger.info("AE MOVE TO " + args[0] + " by " + stepCount + " steps");
     }
 }

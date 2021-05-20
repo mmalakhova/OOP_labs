@@ -6,13 +6,25 @@ import ru.nsu.ccfit.malakhova.commandcreator.CommandInterface;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.logging.*;
+import java.util.logging.FileHandler.*;
 import java.io.*;
 import java.util.*;
 
 public class Interpreter {
     private static final Logger logger = Logger.getLogger(Interpreter.class.getName());
 
-    public static  void main(String[] argv){
+
+
+    public Interpreter() throws IOException {
+    }
+
+
+    public static  void main(String[] argv) throws IOException {
+        FileHandler file = new FileHandler("log.txt");
+        logger.addHandler(file);
+        SimpleFormatter formatter = new SimpleFormatter();
+        file.setFormatter(formatter);
+        logger.setUseParentHandlers(false);
         logger.info("Start execution...");
         Field field = new Field();
         CommandFactory factory = new CommandFactory();

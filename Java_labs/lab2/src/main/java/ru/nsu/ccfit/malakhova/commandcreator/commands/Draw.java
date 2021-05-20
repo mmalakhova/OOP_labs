@@ -11,6 +11,7 @@ public class Draw implements CommandInterface {
         if(!field.isExist()) throw new IllegalArgumentException("there is no field...");
         if( args.length > 0) throw new IllegalArgumentException("Too many arguments...");
         field.setDraw(true);
+        logger.setUseParentHandlers(false);
         logger.info("Field draw is TRUE now");
     }
 }

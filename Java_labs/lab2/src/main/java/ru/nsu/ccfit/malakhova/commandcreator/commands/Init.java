@@ -22,6 +22,7 @@ public class Init implements CommandInterface {
         playerPos.setY(Integer.parseInt(args[3]));
 
         field.createField(playerPos, fieldSize);
+        logger.setUseParentHandlers(false);
         logger.info("Field created");
         logger.info("AE created");
     }

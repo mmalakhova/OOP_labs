@@ -18,6 +18,7 @@ public class Teleport implements CommandInterface {
         newPosition.setY(Integer.parseInt(args[1]));
 
         field.setPlayerPosition(newPosition);
+        logger.setUseParentHandlers(false);
         logger.info("AE TELEPORT to X: " + args[0] + " Y: " + args[1]);
     }
 }
