@@ -8,6 +8,7 @@ import java.util.*;
 
 public class CommandFactory {
     private final Map<String, Class<?>> commands = new HashMap<>();
+    private final Map<String, Object> instances = new HashMap<>();
     private final ClassIdentifier agent = new ClassIdentifier();
 
     public CommandInterface create(String name) throws IOException, ClassNotFoundException, InvocationTargetException,
@@ -18,6 +19,11 @@ public class CommandFactory {
 
         Class<?> object = commands.get(name);
         Constructor<?> constructor = object.getConstructor();
-        return (CommandInterface)constructor.newInstance();
+        Object instance = instances.get(name);
+        if (instance == null){
+            instance = (CommandInterface)constructor.newInstance();
+            instances.put(name, instance);
+        }
+        return (CommandInterface) instance;
     }
 }

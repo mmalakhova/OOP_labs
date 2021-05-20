@@ -1,40 +1,40 @@
-мая 20, 2021 11:13:58 PM ru.nsu.ccfit.malakhova.Interpreter main
+мая 21, 2021 5:24:19 AM ru.nsu.ccfit.malakhova.Interpreter main
 INFO: Start execution...
-мая 20, 2021 11:13:59 PM ru.nsu.ccfit.malakhova.Interpreter main
+мая 21, 2021 5:24:19 AM ru.nsu.ccfit.malakhova.Interpreter main
 INFO: Receiving command
-мая 20, 2021 11:14:07 PM ru.nsu.ccfit.malakhova.Interpreter main
+мая 21, 2021 5:24:26 AM ru.nsu.ccfit.malakhova.Interpreter main
 INFO: Parsing command
-мая 20, 2021 11:14:07 PM ru.nsu.ccfit.malakhova.Interpreter main
+мая 21, 2021 5:24:26 AM ru.nsu.ccfit.malakhova.Interpreter main
 INFO: Creating command object
-мая 20, 2021 11:14:07 PM ru.nsu.ccfit.malakhova.Interpreter main
+мая 21, 2021 5:24:26 AM ru.nsu.ccfit.malakhova.Interpreter main
 INFO: Command created
-мая 20, 2021 11:14:07 PM ru.nsu.ccfit.malakhova.Interpreter main
+мая 21, 2021 5:24:26 AM ru.nsu.ccfit.malakhova.Interpreter main
 INFO: Run command!
-мая 20, 2021 11:14:07 PM ru.nsu.ccfit.malakhova.Interpreter main
+мая 21, 2021 5:24:26 AM ru.nsu.ccfit.malakhova.Interpreter main
 INFO: Command finished!
-мая 20, 2021 11:14:07 PM ru.nsu.ccfit.malakhova.Interpreter main
+мая 21, 2021 5:24:26 AM ru.nsu.ccfit.malakhova.Interpreter main
 INFO: Start printing field!
-мая 20, 2021 11:14:07 PM ru.nsu.ccfit.malakhova.Interpreter main
+мая 21, 2021 5:24:26 AM ru.nsu.ccfit.malakhova.Interpreter main
 INFO: Printing completed!
-мая 20, 2021 11:14:07 PM ru.nsu.ccfit.malakhova.Interpreter main
+мая 21, 2021 5:24:26 AM ru.nsu.ccfit.malakhova.Interpreter main
 INFO: Receiving command
-мая 20, 2021 11:14:13 PM ru.nsu.ccfit.malakhova.Interpreter main
+мая 21, 2021 5:24:38 AM ru.nsu.ccfit.malakhova.Interpreter main
 INFO: Parsing command
-мая 20, 2021 11:14:13 PM ru.nsu.ccfit.malakhova.Interpreter main
+мая 21, 2021 5:24:38 AM ru.nsu.ccfit.malakhova.Interpreter main
 INFO: Creating command object
-мая 20, 2021 11:14:13 PM ru.nsu.ccfit.malakhova.Interpreter main
+мая 21, 2021 5:24:38 AM ru.nsu.ccfit.malakhova.Interpreter main
 INFO: Command created
-мая 20, 2021 11:14:13 PM ru.nsu.ccfit.malakhova.Interpreter main
+мая 21, 2021 5:24:38 AM ru.nsu.ccfit.malakhova.Interpreter main
 INFO: Run command!
-мая 20, 2021 11:14:13 PM ru.nsu.ccfit.malakhova.Interpreter main
+мая 21, 2021 5:24:38 AM ru.nsu.ccfit.malakhova.Interpreter main
 INFO: Command finished!
-мая 20, 2021 11:14:13 PM ru.nsu.ccfit.malakhova.Interpreter main
+мая 21, 2021 5:24:38 AM ru.nsu.ccfit.malakhova.Interpreter main
 INFO: Start printing field!
-мая 20, 2021 11:14:13 PM ru.nsu.ccfit.malakhova.Interpreter main
+мая 21, 2021 5:24:38 AM ru.nsu.ccfit.malakhova.Interpreter main
 INFO: Printing completed!
-мая 20, 2021 11:14:13 PM ru.nsu.ccfit.malakhova.Interpreter main
+мая 21, 2021 5:24:38 AM ru.nsu.ccfit.malakhova.Interpreter main
 INFO: Receiving command
-мая 20, 2021 11:14:17 PM ru.nsu.ccfit.malakhova.Interpreter main
+мая 21, 2021 5:24:45 AM ru.nsu.ccfit.malakhova.Interpreter main
 INFO: Parsing command
-мая 20, 2021 11:14:17 PM ru.nsu.ccfit.malakhova.Interpreter main
+мая 21, 2021 5:24:45 AM ru.nsu.ccfit.malakhova.Interpreter main
 INFO: Execution finished
